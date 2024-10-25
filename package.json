@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "scripts": {
+    "start": ".github/workflows/node_modules/.bin/browser-sync start --server src --no-notify --no-ui --cwd src --files index.html,styles/**/*",
+    "test": ".github/workflows/node_modules/.bin/editorconfig-checker",
+    "html": ".github/workflows/node_modules/.bin/html-minifier --remove-comments --collapse-whitespace --input-dir src --output-dir dist --file-ext html",
+    "styles": ".github/workflows/node_modules/.bin/postcss src/styles/index.css --use postcss-import --use postcss-csso --no-map --output dist/styles/index.css",
+    "build": "npm run html && npm run styles",
+    "serve": ".github/workflows/node_modules/.bin/serve"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "editorconfig-checker": "^3.1.0",
+    "html-minifier": "^4.0.0",
+    "postcss-cli": "^7.1.1",
+    "postcss-csso": "^4.0.0",
+    "postcss-import": "^12.0.1"
+  },
+  "dependencies": {
+    "serve": "^13.0.2"
+  }
+}
