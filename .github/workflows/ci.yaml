@@ -6,8 +6,8 @@ on:
 permissions:
   contents: write
 jobs:
-  build:
-    name: Build Site
+  deploy:
+    name: Deploy Site
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,21 +15,4 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs mkdocs-material
-      - run: mkdocs build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: site-build
-          path: site/
-
-  deploy:
-    name: Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-build
-          path: site/
       - run: mkdocs gh-deploy --force
